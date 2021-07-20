@@ -2,9 +2,9 @@ langcode: de
 status: true
 dependencies:
   config:
-    - field.storage.node.field_iq_event_instances
+    - field.storage.node.field_iq_event_dates
     - node.type.iq_event_location
-id: node.iq_event_location.field_iq_event_instances
+id: node.iq_event_location.field_iq_event_dates
 field_name: field_iq_event_instances
 entity_type: node
 bundle: iq_event_location
