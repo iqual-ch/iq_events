@@ -1,0 +1,46 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_iq_address
+    - node.type.iq_event_location
+  module:
+    - address
+id: node.iq_event_location.field_iq_address
+field_name: field_iq_address
+entity_type: node
+bundle: iq_event_location
+label: Address
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    langcode: ''
+    country_code: CH
+    administrative_area: null
+    locality: ''
+    dependent_locality: null
+    postal_code: ''
+    sorting_code: null
+    address_line1: ''
+    address_line2: ''
+    organization: ''
+    given_name: ''
+    additional_name: null
+    family_name: ''
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    organization:
+      override: hidden
+  fields: {  }
+field_type: address

@@ -1,0 +1,28 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_iq_topics
+    - node.type.iq_event_location
+    - taxonomy.vocabulary.iq_topics
+id: node.iq_event_location.field_iq_topics
+field_name: field_iq_topics
+entity_type: node
+bundle: iq_event_location
+label: Topics
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      iq_topics: iq_topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

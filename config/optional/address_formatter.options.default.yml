@@ -1,0 +1,8 @@
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: NrFYIcjbPuJPFeYD09xerLJYgQLtTRP_BMtzD-xab-s
+id: default
+label: Default
+options: {  }

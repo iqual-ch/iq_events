@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.iq_topics
+id: taxonomy_term.iq_topics
+target_entity_type_id: taxonomy_term
+target_bundle: iq_topics
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,20 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_iq_opening_hours
+    - node.type.iq_event_location
+  module:
+    - office_hours
+id: node.iq_event_location.field_iq_opening_hours
+field_name: field_iq_opening_hours
+entity_type: node
+bundle: iq_event_location
+label: 'Opening hours'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: office_hours

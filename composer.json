@@ -1,0 +1,19 @@
+{
+    "name": "iqual/iq_events",
+    "description": "Provides functionality creating and managing events",
+    "type": "drupal-custom-module",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://github.com/iqual-ch/iq_events"
+        }
+    ],
+    "require": {
+        "drupal/office_hours": "*",
+        "drupal/address": "*",
+        "drupal/address_formatter": "*",
+        "drupal/iq_entity_browsers": "*",
+        "iqual/pagedesigner_block_adaptable": "*",
+        "iqual/iq_group": "*"
+    }
+}

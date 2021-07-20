@@ -1,0 +1,20 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_iq_registration_close_date
+    - node.type.iq_event_instance
+id: node.iq_event_instance.field_iq_registration_close_date
+field_name: field_iq_registration_close_date
+entity_type: node
+bundle: iq_event_instance
+label: 'Registration until'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1626784890
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

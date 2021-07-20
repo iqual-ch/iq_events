@@ -1,0 +1,21 @@
+uuid: 5678d4e0-5412-4215-b726-3e48130ff731
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.iq_event_location
+  module:
+    - metatag
+id: node.iq_event_location.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: iq_event_location
+label: Metatags
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

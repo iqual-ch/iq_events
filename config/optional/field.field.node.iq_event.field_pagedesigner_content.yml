@@ -1,0 +1,29 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pagedesigner_content
+    - node.type.iq_event
+    - pagedesigner.pagedesigner_type.container
+  module:
+    - pagedesigner
+id: node.iq_event.field_pagedesigner_content
+field_name: field_pagedesigner_content
+entity_type: node
+bundle: iq_event
+label: Pagedesigner-Inhalt
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:pagedesigner_element'
+  handler_settings:
+    target_bundles:
+      container: container
+    sort:
+      field: _none
+    auto_create: ''
+    auto_create_bundle: ''
+field_type: pagedesigner_item

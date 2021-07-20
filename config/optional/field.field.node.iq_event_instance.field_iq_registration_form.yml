@@ -1,0 +1,24 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_iq_registration_form
+    - node.type.iq_event_instance
+  module:
+    - webform
+id: node.iq_event_instance.field_iq_registration_form
+field_name: field_iq_registration_form
+entity_type: node
+bundle: iq_event_instance
+label: 'Registration Form'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: webform

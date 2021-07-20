@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_iq_capacity
+    - node.type.iq_event_location
+id: node.iq_event_location.field_iq_capacity
+field_name: field_iq_capacity
+entity_type: node
+bundle: iq_event_location
+label: Capacity
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
