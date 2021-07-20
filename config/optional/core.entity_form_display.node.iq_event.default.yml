@@ -1,0 +1,102 @@
+uuid: 2fc60578-ebb2-47d4-af76-c8a41124b216
+langcode: de
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.iq_image_browser
+    - field.field.node.iq_event.field_iq_event_instances
+    - field.field.node.iq_event.field_iq_image
+    - field.field.node.iq_event.field_iq_topics
+    - field.field.node.iq_event.field_meta_tags
+    - field.field.node.iq_event.field_pagedesigner_content
+    - field.field.node.iq_event.field_yoast_seo
+    - node.type.iq_event
+  module:
+    - entity_browser
+    - entity_browser_entity_form
+    - inline_entity_form
+    - metatag
+    - yoast_seo
+id: node.iq_event.default
+targetEntityType: node
+bundle: iq_event
+mode: default
+content:
+  field_iq_event_instances:
+    type: inline_entity_form_complex
+    weight: 4
+    region: content
+    settings:
+      form_mode: default
+      revision: true
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+  field_iq_image:
+    type: entity_browser_entity_reference
+    weight: 2
+    region: content
+    settings:
+      entity_browser: iq_image_browser
+      field_widget_display: rendered_entity
+      field_widget_display_settings:
+        view_mode: default
+      field_widget_remove: true
+      field_widget_replace: true
+      open: true
+      selection_mode: selection_append
+      field_widget_edit: false
+    third_party_settings: {  }
+  field_iq_topics:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 3
+    region: content
+    settings:
+      sidebar: true
+    third_party_settings: {  }
+  field_yoast_seo:
+    type: yoast_seo_widget
+    weight: 1
+    region: content
+    settings:
+      body: body
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 6
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_pagedesigner_content: true
+  langcode: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true
+  url_redirects: true

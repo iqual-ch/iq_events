@@ -1,0 +1,96 @@
+uuid: bd4e40f7-d4a0-403e-8b76-dd7e9bbdcbcb
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.node.iq_event_instance.field_iq_capacity
+    - field.field.node.iq_event_instance.field_iq_date
+    - field.field.node.iq_event_instance.field_iq_external_link
+    - field.field.node.iq_event_instance.field_iq_location
+    - field.field.node.iq_event_instance.field_iq_number_registrations
+    - field.field.node.iq_event_instance.field_iq_registration_close_date
+    - field.field.node.iq_event_instance.field_iq_registration_form
+    - node.type.iq_event_instance
+  module:
+    - datetime_range
+    - entity_browser_entity_form
+    - inline_entity_form
+    - link
+    - webform
+id: node.iq_event_instance.default
+targetEntityType: node
+bundle: iq_event_instance
+mode: default
+content:
+  field_iq_capacity:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_iq_date:
+    type: daterange_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_iq_external_link:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_iq_location:
+    type: inline_entity_form_complex
+    weight: 2
+    region: content
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      revision: false
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+  field_iq_registration_close_date:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_iq_registration_form:
+    type: webform_entity_reference_select
+    weight: 5
+    region: content
+    settings:
+      default_data: true
+      webforms: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_iq_number_registrations: true
+  langcode: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true
+  url_redirects: true
