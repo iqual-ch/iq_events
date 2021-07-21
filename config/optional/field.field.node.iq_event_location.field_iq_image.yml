@@ -1,3 +1,4 @@
+uuid: 5f5e558b-8895-42a1-bcca-aca952553aff
 langcode: de
 status: true
 dependencies:
@@ -6,11 +7,13 @@ dependencies:
     - media.type.image
     - media.type.svg
     - node.type.iq_event_location
+_core:
+  default_config_hash: QEAYbb6dh69LR4zxmna12Mmyv6w8nynp1mRjMkh6XSg
 id: node.iq_event_location.field_iq_image
 field_name: field_iq_image
 entity_type: node
 bundle: iq_event_location
-label: Bild
+label: Image
 description: ''
 required: false
 translatable: true

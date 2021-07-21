@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.iq_event_location.field_iq_opening_hours
     - field.field.node.iq_event_location.field_iq_topics
     - field.field.node.iq_event_location.field_meta_tags
+    - field.field.node.iq_event_location.field_pagedesigner_content
     - field.field.node.iq_event_location.field_yoast_seo
     - node.type.iq_event_location
   module:
@@ -104,6 +105,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_pagedesigner_content: true
   langcode: true
   path: true
   promote: true

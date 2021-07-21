@@ -1,0 +1,5 @@
+services:
+  access_check.registrations:
+    class: Drupal\iq_events\Access\IqEventsRegistrationsAccess
+    tags:
+      - { name: access_check, applies_to: _access_registrations }
