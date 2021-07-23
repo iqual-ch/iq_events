@@ -1,9 +1,12 @@
+uuid: 7e90c24a-1c85-4847-b7fc-92f40952f525
 langcode: de
 status: true
 dependencies:
   config:
     - field.storage.node.field_iq_number_registrations
     - node.type.iq_event_instance
+_core:
+  default_config_hash: WXRo6jXKVsDMW9OreaayOg_Dsskz5N2e87aP5UmStJk
 id: node.iq_event_instance.field_iq_number_registrations
 field_name: field_iq_number_registrations
 entity_type: node
@@ -12,7 +15,9 @@ label: 'Number of registrations'
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: 0
 default_value_callback: ''
 settings:
   min: null

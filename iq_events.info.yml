@@ -12,3 +12,4 @@ dependencies:
   - inline_entity_form:inline_entity_form
   - iq_entity_browsers:iq_entity_browsers
   - pagedesigner_block_adaptable:pagedesigner_block_adaptable
+  - drupal:field_group

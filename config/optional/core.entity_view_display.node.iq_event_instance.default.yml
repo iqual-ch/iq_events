@@ -1,0 +1,82 @@
+uuid: 3ed050db-6a25-4183-a4d2-4a588bcf9a37
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.node.iq_event_instance.field_iq_capacity
+    - field.field.node.iq_event_instance.field_iq_date
+    - field.field.node.iq_event_instance.field_iq_external_link
+    - field.field.node.iq_event_instance.field_iq_location
+    - field.field.node.iq_event_instance.field_iq_number_registrations
+    - field.field.node.iq_event_instance.field_iq_registration_close_date
+    - field.field.node.iq_event_instance.field_iq_registration_form
+    - node.type.iq_event_instance
+  module:
+    - datetime_range
+    - field_group
+    - user
+    - webform
+third_party_settings:
+  field_group:
+    group_iq_registration_wrapper:
+      children:
+        - field_iq_registration_form
+      parent_name: group_accordion
+      weight: 3
+      format_type: accordion_item
+      region: content
+      format_settings:
+        formatter: closed
+        id: ''
+        classes: ''
+      label: Registration
+    group_accordion:
+      children:
+        - group_iq_registration_wrapper
+      parent_name: ''
+      weight: 2
+      format_type: accordion
+      region: content
+      format_settings:
+        effect: bounceslide
+        id: ''
+        classes: ''
+      label: Registration
+id: node.iq_event_instance.default
+targetEntityType: node
+bundle: iq_event_instance
+mode: default
+content:
+  field_iq_date:
+    type: daterange_default
+    weight: 0
+    region: content
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_iq_location:
+    type: entity_reference_label
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_iq_registration_form:
+    type: webform_entity_reference_entity_view
+    weight: 2
+    region: content
+    label: visually_hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+hidden:
+  field_iq_capacity: true
+  field_iq_external_link: true
+  field_iq_number_registrations: true
+  field_iq_registration_close_date: true
+  langcode: true
+  links: true
