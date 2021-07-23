@@ -1,6 +1,8 @@
 <?php
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\node\Entity\Node;
+use Drupal\group\Entity\Group;
 
 /**
  * Implements hook_entity_view().
@@ -8,7 +10,6 @@ use Drupal\node\Entity\Node;
 function iq_events_entity_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode)
 {
   if ($entity->getEntityTypeId() == 'node' && $entity->bundle() == 'iq_event') {
-    //var_dump(array_keys($build['field_iq_event_instances']));
     foreach ($build['field_iq_event_instances']['#items'] as $key => $instance) {
       $instance = Node::load($instance->getValue()['target_id']);
       if (!empty($instance) && $instance->hasField('field_iq_capacity') && $instance->hasField('field_iq_number_registrations')) {
@@ -31,16 +32,12 @@ function iq_events_entity_view(array &$build, \Drupal\Core\Entity\EntityInterfac
  */
 function iq_events_entity_view_display_alter(\Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, array $context)
 {
-  //var_dump($display);
-  //var_dump($context);
   $node = \Drupal::routeMatch()->getParameter('node');
   if (!empty($node)) {
-    var_dump($node->id());
   }
   foreach ($display->getComponents() as $name => $options) {
 
   }
-//  var_dump($display->getComponents());
 
 }
 
@@ -82,5 +79,24 @@ function iq_events_webform_element_alter(array &$element, \Drupal\Core\Form\Form
   \Drupal::logger('iq_events')->notice(json_encode(array_keys($webform)));
   if ($webform['#webform_id'] == 'iq_registration_form') {
     //\Drupal::logger('iq_events')->notice('hehehe');
+  }
+}
+
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function iq_events_node_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account)
+{
+  if ($entity->bundle() == 'iq_event') {
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $generalGroup = Group::load(\Drupal::config('iq_group.settings')->get('general_group_id'));
+
+    if (!empty($generalGroup) && $generalGroup->getMember($account)) {
+      return AccessResult::neutral();
+    }
+    else {
+      return AccessResult::forbidden('Non-group members cannot access');
+    }
   }
 }
