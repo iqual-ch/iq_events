@@ -13,3 +13,4 @@ dependencies:
   - iq_entity_browsers:iq_entity_browsers
   - pagedesigner_block_adaptable:pagedesigner_block_adaptable
   - drupal:field_group
+  - iq_group:iq_group
