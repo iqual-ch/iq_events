@@ -8,10 +8,11 @@ dependencies:
     - field.field.node.iq_event_instance.field_iq_external_link
     - field.field.node.iq_event_instance.field_iq_location
     - field.field.node.iq_event_instance.field_iq_number_registrations
-    - field.field.node.iq_event_instance.field_iq_registration_close_date
     - field.field.node.iq_event_instance.field_iq_registration_form
+    - field.field.node.iq_event_instance.field_iq_registration_until
     - node.type.iq_event_instance
   module:
+    - datetime
     - datetime_range
     - entity_browser_entity_form
     - inline_entity_form
@@ -69,12 +70,6 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
-  field_iq_registration_close_date:
-    type: datetime_timestamp
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_iq_registration_form:
     type: webform_entity_reference_select
     weight: 5
@@ -83,6 +78,12 @@ content:
       default_data: true
       webforms: {  }
     third_party_settings: {  }
+  field_iq_registration_until:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   title:
     type: string_textfield
     weight: 0

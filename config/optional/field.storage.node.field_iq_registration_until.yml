@@ -1,0 +1,20 @@
+uuid: e9419593-6255-4c16-9d2c-c10f92a5aca1
+langcode: de
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_iq_registration_until
+field_name: field_iq_registration_until
+entity_type: node
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

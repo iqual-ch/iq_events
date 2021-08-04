@@ -6,7 +6,6 @@ dependencies:
     - entity_browser.browser.iq_image_browser
     - field.field.node.iq_event_location.field_iq_address
     - field.field.node.iq_event_location.field_iq_capacity
-    - field.field.node.iq_event_location.field_iq_event_dates
     - field.field.node.iq_event_location.field_iq_image
     - field.field.node.iq_event_location.field_iq_lead
     - field.field.node.iq_event_location.field_iq_opening_hours
@@ -39,12 +38,6 @@ content:
     region: content
     settings:
       placeholder: ''
-    third_party_settings: {  }
-  field_iq_event_dates:
-    type: datetime_timestamp
-    weight: 3
-    region: content
-    settings: {  }
     third_party_settings: {  }
   field_iq_image:
     type: entity_browser_entity_reference

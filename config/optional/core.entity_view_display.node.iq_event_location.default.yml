@@ -1,0 +1,45 @@
+uuid: c70cc1da-306e-48e2-a179-15040b9c3b42
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.node.iq_event_location.field_iq_address
+    - field.field.node.iq_event_location.field_iq_capacity
+    - field.field.node.iq_event_location.field_iq_image
+    - field.field.node.iq_event_location.field_iq_lead
+    - field.field.node.iq_event_location.field_iq_opening_hours
+    - field.field.node.iq_event_location.field_iq_topics
+    - field.field.node.iq_event_location.field_meta_tags
+    - field.field.node.iq_event_location.field_pagedesigner_content
+    - field.field.node.iq_event_location.field_yoast_seo
+    - node.type.iq_event_location
+  module:
+    - pagedesigner
+    - user
+id: node.iq_event_location.default
+targetEntityType: node
+bundle: iq_event_location
+mode: default
+content:
+  field_pagedesigner_content:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: pagedesigner_formatter
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_iq_address: true
+  field_iq_capacity: true
+  field_iq_image: true
+  field_iq_lead: true
+  field_iq_opening_hours: true
+  field_iq_topics: true
+  field_meta_tags: true
+  field_yoast_seo: true
+  langcode: true

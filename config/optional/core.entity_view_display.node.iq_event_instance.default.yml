@@ -8,10 +8,11 @@ dependencies:
     - field.field.node.iq_event_instance.field_iq_external_link
     - field.field.node.iq_event_instance.field_iq_location
     - field.field.node.iq_event_instance.field_iq_number_registrations
-    - field.field.node.iq_event_instance.field_iq_registration_close_date
     - field.field.node.iq_event_instance.field_iq_registration_form
+    - field.field.node.iq_event_instance.field_iq_registration_until
     - node.type.iq_event_instance
   module:
+    - datetime
     - datetime_range
     - field_group
     - user
@@ -73,10 +74,18 @@ content:
     settings:
       source_entity: true
     third_party_settings: {  }
+  field_iq_registration_until:
+    weight: 4
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
 hidden:
   field_iq_capacity: true
   field_iq_external_link: true
   field_iq_number_registrations: true
-  field_iq_registration_close_date: true
   langcode: true
   links: true

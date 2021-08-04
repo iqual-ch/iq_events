@@ -1,0 +1,66 @@
+uuid: 7e100bcb-f9b0-4c6f-93bc-a095e4eaeab2
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.node.iq_event.field_iq_description
+    - field.field.node.iq_event.field_iq_event_instances
+    - field.field.node.iq_event.field_iq_image
+    - field.field.node.iq_event.field_iq_topics
+    - field.field.node.iq_event.field_meta_tags
+    - field.field.node.iq_event.field_pagedesigner_content
+    - field.field.node.iq_event.field_yoast_seo
+    - node.type.iq_event
+  module:
+    - pagedesigner
+    - pagedesigner_yoast
+    - text
+    - user
+id: node.iq_event.default
+targetEntityType: node
+bundle: iq_event
+mode: default
+content:
+  field_iq_description:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_iq_event_instances:
+    type: entity_reference_entity_view
+    weight: 4
+    region: content
+    label: above
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+  field_iq_image:
+    type: entity_reference_label
+    weight: 3
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_pagedesigner_content:
+    type: pagedesigner_formatter
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_yoast_seo:
+    type: pagedesigner_yoast_keyword
+    weight: 2
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_iq_topics: true
+  field_meta_tags: true
+  langcode: true
+  links: true

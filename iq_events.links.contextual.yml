@@ -1,0 +1,5 @@
+entity.node.registrations:
+  route_name: iq_events.registrations
+  group: node
+  title: Registrations
+  weight: 10
