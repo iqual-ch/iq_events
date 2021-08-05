@@ -2,8 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_iq_date
     - webform.webform.iq_registration_form
   module:
+    - datetime_range
+    - node
     - webform
     - webform_views
 id: iq_registrations
@@ -74,25 +77,57 @@ display:
           summary: ''
           description: ''
           columns:
-            webform_submission_bulk_form: webform_submission_bulk_form
+            webform_submission_value_3: webform_submission_value_3
+            field_iq_date: field_iq_date
             webform_submission_value: webform_submission_value
             webform_submission_value_1: webform_submission_value_1
+            webform_submission_value_2: webform_submission_value_2
+            created: created
+            webform_submission_bulk_form: webform_submission_bulk_form
           info:
-            webform_submission_bulk_form:
+            webform_submission_value_3:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_iq_date:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             webform_submission_value:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             webform_submission_value_1:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_2:
               sortable: false
               default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            created:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_bulk_form:
               align: ''
               separator: ''
               empty_column: false
@@ -109,7 +144,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Event Instance'
+          label: Durchführung
           exclude: false
           alter:
             alter_text: false
@@ -154,6 +189,71 @@ display:
           webform_multiple_value: true
           webform_multiple_delta: 0
           plugin_id: webform_submission_field
+        field_iq_date:
+          id: field_iq_date
+          table: node__field_iq_date
+          field: field_iq_date
+          relationship: webform_submission_value
+          group_type: group
+          admin_label: ''
+          label: 'Datum Event'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: daterange_default
+          settings:
+            timezone_override: ''
+            format_type: short
+            separator: '-'
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         webform_submission_value:
           id: webform_submission_value
           table: webform_submission_field_iq_registration_form_iq_first_name
@@ -161,7 +261,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'First name'
+          label: Vorname
           exclude: false
           alter:
             alter_text: false
@@ -213,7 +313,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Last name'
+          label: Nachname
           exclude: false
           alter:
             alter_text: false
@@ -317,7 +417,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Erstellt
+          label: 'Angemeldet an'
           exclude: false
           alter:
             alter_text: false
@@ -445,19 +545,23 @@ display:
           group: 1
           exposed: false
           expose:
-            operator_id: ''
-            label: ''
+            operator_id: webform_id_op
+            label: Webform
             description: ''
             use_operator: false
-            operator: ''
+            operator: webform_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: ''
+            identifier: webform_id
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
+              author: '0'
+              editor: '0'
+              designer: '0'
+              anonymous: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -481,8 +585,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: '='
-          value: ''
+          operator: in
+          value: {  }
           group: 1
           exposed: true
           expose:
@@ -503,7 +607,7 @@ display:
               editor: '0'
               designer: '0'
               anonymous: '0'
-            placeholder: ''
+            reduce: 0
           is_grouped: false
           group_info:
             label: ''
@@ -516,13 +620,22 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: webform_submission_field_filter
+          plugin_id: webform_submission_entity_reference_select_filter
       sorts: {  }
-      title: Registrations
+      title: Anmeldungen
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        webform_submission_value:
+          id: webform_submission_value
+          table: webform_submission_field_iq_registration_form_iq_event_instance
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: 'Event instance'
+          required: false
+          plugin_id: standard
       arguments:
         webform_submission_value:
           id: webform_submission_value
@@ -569,7 +682,8 @@ display:
         - url
         - url.query_args
         - user
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_iq_date'
   block_1:
     display_plugin: block
     id: block_1
@@ -622,7 +736,8 @@ display:
         - url
         - url.query_args
         - user
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_iq_date'
   page_1:
     display_plugin: page
     id: page_1
@@ -630,7 +745,8 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: node/%node/registrations
+      path: node/%node/registrationss
+      enabled: true
     cache_metadata:
       max-age: 0
       contexts:
@@ -639,4 +755,5 @@ display:
         - url
         - url.query_args
         - user
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_iq_date'
