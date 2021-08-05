@@ -448,7 +448,7 @@ display:
               editor: '0'
               designer: '0'
               anonymous: '0'
-            placeholder: ''
+            placeholder: JJJJ-MM-TT
             min_placeholder: ''
             max_placeholder: ''
           is_grouped: false
@@ -497,7 +497,7 @@ display:
               editor: '0'
               designer: '0'
               anonymous: '0'
-            placeholder: ''
+            placeholder: JJJJ-MM-TT
             min_placeholder: ''
             max_placeholder: ''
           is_grouped: false
