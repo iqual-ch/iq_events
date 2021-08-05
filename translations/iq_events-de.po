@@ -1,0 +1,57 @@
+msgid "Instances"
+msgstr "Durchführungen"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "External Link"
+msgstr "Externer Link"
+
+msgid "Registration Until"
+msgstr "Registrierung möglich bis"
+
+msgid "Registration Form"
+msgstr "Formular zur Registrierung"
+
+msgid "Registration Form Einstellungen"
+msgstr "Formulareinstellungen"
+
+msgid "Location"
+msgstr "Durchführungsort"
+
+msgid "Capacity"
+msgstr "maximale Teilnehmeranzahl"
+
+msgid "Number of registrations"
+msgstr "Anzahl Registrierungen"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Image"
+msgstr "Bild"
+
+msgid "Opening Hours"
+msgstr "Öffnungszeiten"
+
+msgid "From"
+msgstr "Von"
+
+msgid "to"
+msgstr "Bis"
+
+msgid "To"
+msgstr "Bis"
+
+msgid "Add time slot"
+msgstr "Weitere Zeiten hinzufügen"
+
+msgid "Copy last day"
+msgstr "Letzten Tag kopieren"
+
+msgid "Topics"
+msgstr "Themen"
+
