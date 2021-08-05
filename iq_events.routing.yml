@@ -1,11 +1,10 @@
 iq_events.registrations:
   path: '/node/{node}/registrations'
   defaults:
-    _entity_view: 'iq_registrations.page_1'
+    _title: 'Registrations'
+    _controller: '\Drupal\iq_events\Controller\IqEventsRegistrationsController::registrationsOverview'
   requirements:
     _custom_access: '\Drupal\iq_events\Access\IqEventsRegistrationsAccess::checkAccess'
     node: \d+
   options:
-    parameters:
-      node:
-        type: entity:node
+    _node_operation_route: TRUE

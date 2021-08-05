@@ -75,10 +75,30 @@ function iq_events_webform_submission_delete(\Drupal\webform\WebformSubmissionIn
  */
 function iq_events_webform_element_alter(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array $context)
 {
-  $webform = $context['webform'];
-  \Drupal::logger('iq_events')->notice(json_encode(array_keys($webform)));
-  if ($webform['#webform_id'] == 'iq_registration_form') {
-    //\Drupal::logger('iq_events')->notice('hehehe');
+  $form = $context['form'];
+  \Drupal::logger('iq_events')->notice(json_encode(array_keys($element)));
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!empty($node) && $node->bundle() == 'iq_event') {
+    if ($element['#webform_key'] == "iq_event_instance") {
+      if (!empty($form['#attributes']['class'])) {
+        foreach ($form['#attributes']['class'] as $class) {
+          if (preg_match('/^.*node\-[0-9]+\-form$/', $class)) {
+            $event_instance_id = explode('-', explode('-node-', $class)[1])[0];
+            $event_instances = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+              'type' => 'iq_event_instance',
+              'nid' => $event_instance_id
+            ]);
+            $event_instance = reset($event_instances);
+            if (!empty($event_instance)) {
+              $element['#default_value'] = $event_instance;
+            }
+          }
+        }
+      }
+    }
+    else if ($element['#webform_key'] == "iq_event") {
+        $element['#default_value'] = $node;
+    }
   }
 }
 

@@ -1,0 +1,127 @@
+@import '../../resources/sass/definitions';
+
+.iq-event-teaser{
+  margin-bottom: 90px;
+  height: 100%;
+  a{
+    text-decoration: none;
+    height: 100%;
+    &:hover,
+    &:focus  {
+      text-decoration: none;
+      .content-holder{
+        .btn{
+          background-color: $background-color-hover-buttons;
+          color: $font-color-hover-buttons;
+          border-color: $border-color-hover-buttons;
+          transition: $transition-default;
+        }
+      }
+    }
+    &:active{
+      text-decoration: none;
+      .content-holder{
+        .btn{
+          background-color: $background-color-active-buttons;
+          color: $font-color-active-buttons;
+          border-color: $border-color-active-buttons;
+          transition: $transition-default;
+        }
+      }
+    }
+    .inner{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .img-holder{
+        padding-bottom: 56.25%;
+        margin-bottom: 10px;
+        position: relative;
+        background-color: rgba($color-grey5, 0.5);
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          position: absolute;
+          &[src=""]{
+            display: none;
+          }
+        }
+      }
+      .content-holder{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .title{
+          font-size: $font-size-h3;
+          line-height: $line-height-h3;
+          font-weight: $font-weight-h3;
+          font-style: $font-style-h3;
+          font-family: $font-family-h3;
+          color: $color-h3;
+          margin: 5px 0;
+          @include fluid-type(320px, 991px, $font-size-min-h3, $font-size-h3);
+        }
+        .pre-title,
+        .sub-title{
+          font-size: $font-size-small;
+          line-height: $line-height-small;
+          font-weight: $font-weight-small;
+          font-style: $font-style-small;
+          font-family: $font-family-small;
+          color: $color-small;
+          margin-top: 0;
+          margin-bottom: 0;
+          @include fluid-type(320px, 991px, $font-size-min-small, $font-size-small);
+        }
+        .content{
+          margin-bottom: 2 * $margin-bottom-standard;
+          margin-top: 2 * $margin-bottom-standard;
+          > *:first-child{
+            margin-top: 0;
+          }
+          > *:last-child{
+            margin-bottom: 0;
+          }
+        }
+        .btn-holder{
+          margin-top: auto;
+          padding-top: 30px;
+          .btn{
+            display: inline-block;
+            padding: $padding-buttons;
+            font-size: 80%;
+            font-weight: $font-weight-buttons;
+            font-style: $font-style-buttons;
+            font-family: $font-family-buttons;
+            line-height: $line-height-buttons;
+            color: $font-color-buttons;
+            text-align: center;
+            text-decoration: none;
+            border-color: $border-color-buttons;
+            border-style: solid;
+            border-width: $border-width-buttons;
+            border-radius: $border-radius-buttons;
+            background: $background-color-buttons;
+            transition: $transition-default;
+            i{
+              font-size: 80%;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.view.view-events{
+  .view-content{
+    > * {
+      margin-bottom: 90px;
+      .iq-event-teaser{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
