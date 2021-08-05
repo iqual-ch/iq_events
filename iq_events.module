@@ -3,7 +3,6 @@
 use Drupal\Core\Access\AccessResult;
 use Drupal\node\Entity\Node;
 use Drupal\group\Entity\Group;
-use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_entity_view().
@@ -28,27 +27,6 @@ function iq_events_entity_view(array &$build, \Drupal\Core\Entity\EntityInterfac
   }
 }
 
-/**
- * Implements hook_entity_view_display_alter().
- */
-function iq_events_entity_view_display_alter(\Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, array $context)
-{
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if (!empty($node)) {
-  }
-  foreach ($display->getComponents() as $name => $options) {
-
-  }
-
-}
-
-/**
- * Implements hook_form_alter().
- */
-function iq_events_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
-{
-}
-
 function iq_events_webform_submission_delete(\Drupal\webform\WebformSubmissionInterface $webform_submission) {
   $values = $webform_submission->getData();
   if (!empty($values['iq_event_instance'])) {
@@ -70,6 +48,7 @@ function iq_events_webform_submission_delete(\Drupal\webform\WebformSubmissionIn
     }
   }
 }
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */

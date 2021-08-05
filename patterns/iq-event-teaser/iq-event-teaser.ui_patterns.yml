@@ -8,28 +8,12 @@ iq-event-teaser:
   designer: 0
   weight: 1000
   fields:
-    pre_title:
-      type: text
-      label: "Pre Title"
     title:
       type: text
       label: "Title"
     sub_title:
       type: text
       label: "Subtitle"
-    content:
-      type: html
-      label: "Content"
-    image:
-      type: image
-      label: "Image"
-    href:
-      type: href
-      label: "Link"
-    href_text:
-      type: text
-      label: "Link Text"
-
   libraries:
     - iq-event-teaser:
         css:
