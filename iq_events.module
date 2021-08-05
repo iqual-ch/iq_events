@@ -3,6 +3,7 @@
 use Drupal\Core\Access\AccessResult;
 use Drupal\node\Entity\Node;
 use Drupal\group\Entity\Group;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_entity_view().
@@ -69,6 +70,29 @@ function iq_events_webform_submission_delete(\Drupal\webform\WebformSubmissionIn
     }
   }
 }
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function iq_events_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  // For the registrations block, only filter with the instances from the event
+  // that is being edited.
+  if ($form['#id'] == 'views-exposed-form-iq-registrations-block-1') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if (!empty($node) && $node->hasField('field_iq_event_instances')) {
+      $event_instances = $node->field_iq_event_instances->getValue();
+    }
+    $options = [];
+    $options['All'] = $form['webform_submission_value']['#options']['All'];
+    foreach ($event_instances as $key => $event_instance_id) {
+      $event_instance = Node::load($event_instance_id['target_id']);
+      if (!empty($event_instance)) {
+        $options[$event_instance->id()] = $event_instance->label();
+      }
+    }
+    $form['webform_submission_value']['#options'] = $options;
+  }
+}
 
 /**
  * Implements hook_webform_element_alter().
@@ -90,14 +114,14 @@ function iq_events_webform_element_alter(array &$element, \Drupal\Core\Form\Form
             ]);
             $event_instance = reset($event_instances);
             if (!empty($event_instance)) {
-              $element['#default_value'] = $event_instance;
+              $element['#default_value'] = $event_instance->id();
             }
           }
         }
       }
     }
     else if ($element['#webform_key'] == "iq_event") {
-        $element['#default_value'] = $node;
+        $element['#default_value'] = $node->id();
     }
   }
 }
