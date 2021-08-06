@@ -16,16 +16,15 @@ function iq_events_entity_view(array &$build, \Drupal\Core\Entity\EntityInterfac
       if (!empty($instance) && $instance->hasField('field_iq_capacity') && $instance->hasField('field_iq_number_registrations')) {
 
         if ($instance->field_iq_capacity->value == $instance->field_iq_number_registrations->value) {
-          $build['field_iq_event_instances']['#items'][$key] = [
+          $build['field_iq_event_instances'][$key] = [
             '#type' => 'markup',
-            '#markup' => '<p>The Registration is closed (The event is full).</p>'
+            '#markup' => '<p>The Registration is closed for ' . $instance->label(). ' (the event is full).</p>'
           ];
-          //unset($build['field_iq_event_instances']['#items'][$key]);
         }
       }
     }
-
   }
+
 }
 
 function iq_events_webform_submission_delete(\Drupal\webform\WebformSubmissionInterface $webform_submission) {
