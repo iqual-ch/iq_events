@@ -3,6 +3,7 @@
 use Drupal\Core\Access\AccessResult;
 use Drupal\node\Entity\Node;
 use Drupal\group\Entity\Group;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_entity_view().
@@ -57,19 +58,30 @@ function iq_events_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormS
   // For the registrations block, only filter with the instances from the event
   // that is being edited.
   if ($form['#id'] == 'views-exposed-form-iq-registrations-block-1') {
-    $node = \Drupal::routeMatch()->getParameter('node');
+    // Get the current node that is being edited from the URL.
+    $current_path = \Drupal::service('path.current')->getPath();
+    $current_path = explode('/', $current_path);
+    $registrations_path = explode('?', end($current_path));
+    // Double check for the current path to confirm that we are on the
+    // registrations page.
+    if (reset($registrations_path) == 'registrations') {
+      end($current_path);
+      $node_id = prev($current_path);
+      $node = Node::load($node_id);
+    }
     if (!empty($node) && $node->hasField('field_iq_event_instances')) {
       $event_instances = $node->field_iq_event_instances->getValue();
-    }
-    $options = [];
-    $options['All'] = $form['webform_submission_value']['#options']['All'];
-    foreach ($event_instances as $key => $event_instance_id) {
-      $event_instance = Node::load($event_instance_id['target_id']);
-      if (!empty($event_instance)) {
-        $options[$event_instance->id()] = $event_instance->label();
+
+      $options = [];
+      $options['All'] = $form['webform_submission_value']['#options']['All'];
+      foreach ($event_instances as $key => $event_instance_id) {
+        $event_instance = Node::load($event_instance_id['target_id']);
+        if (!empty($event_instance)) {
+          $options[$event_instance->id()] = $event_instance->label();
+        }
       }
+      $form['webform_submission_value']['#options'] = $options;
     }
-    $form['webform_submission_value']['#options'] = $options;
   }
 }
 
