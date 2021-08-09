@@ -16,21 +16,21 @@ use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Returns response for the registrations tab.
+ * Controller for the event series.
  */
-class IqEventsRegistrationsController extends ControllerBase implements ContainerInjectionInterface {
+class IqEventsSeriesController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
-   * Generates an overview table of registrations for an event node.
+   * Generates a form to create series of an event.
    *
    * @param \Drupal\node\NodeInterface $node
-   *   The event node object.
+   *   A node object.
    *
    * @return array
    *   An array as expected by \Drupal\Core\Render\RendererInterface::render().
    */
   public function registrationsOverview(NodeInterface $node) {
-    $build = views_embed_view('iq_registrations', 'block_1', $node->id());
+
     return $build;
   }
 

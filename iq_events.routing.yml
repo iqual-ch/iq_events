@@ -8,3 +8,15 @@ iq_events.registrations:
     node: \d+
   options:
     _node_operation_route: TRUE
+
+iq_events.series:
+  path: '/node/{node}/series'
+  defaults:
+    _title: 'Series'
+    _form: '\Drupal\iq_events\Form\IqEventsSeriesForm'
+  requirements:
+    _node_add_access: 'node'
+  options:
+    parameters:
+      node:
+        type: 'entity:node'
