@@ -15,6 +15,7 @@
         "drupal/iq_entity_browsers": "*",
         "iqual/pagedesigner_block_adaptable": "*",
         "iqual/iq_group": "*",
-        "drupal/field_group": "*"
+        "drupal/field_group": "*",
+        "drupal/calendar": "*"
     }
 }

@@ -14,3 +14,4 @@ dependencies:
   - pagedesigner_block_adaptable:pagedesigner_block_adaptable
   - drupal:field_group
   - iq_group:iq_group
+  - drupal:calendar
