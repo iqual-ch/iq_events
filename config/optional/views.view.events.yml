@@ -1,17 +1,23 @@
-langcode: en
+uuid: 6ba5d85e-f03e-4e50-ba8c-82668205d7e7
+langcode: de
 status: true
 dependencies:
   config:
+    - field.storage.media.field_media_image
     - field.storage.node.field_iq_address
     - field.storage.node.field_iq_date
     - node.type.iq_event_instance
+    - taxonomy.vocabulary.iq_topics
   module:
     - address
     - calendar
     - datetime
     - datetime_range
+    - image
+    - media
     - node
     - pagedesigner_block_adaptable
+    - taxonomy
     - ui_patterns_views
     - user
 id: events
@@ -68,6 +74,10 @@ display:
         options:
           default_field_elements: 1
           inline:
+            nid: 0
+            nid_1: 0
+            view_node: 0
+            field_media_image: 0
             title: 0
             title_1: 0
             field_iq_address: 0
@@ -76,17 +86,271 @@ display:
           hide_empty: 0
           pattern: iq-event-teaser
           pattern_mapping:
+            'views_row:view_node':
+              destination: href
+              weight: 0
+              plugin: views_row
+              source: view_node
+            'views_row:field_media_image':
+              destination: image
+              weight: 1
+              plugin: views_row
+              source: field_media_image
             'views_row:title':
               destination: title
-              weight: 0
+              weight: 2
               plugin: views_row
               source: title
             'views_row:title_1':
               destination: sub_title
-              weight: 1
+              weight: 3
               plugin: views_row
               source: title_1
       fields:
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_unformatted
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
+        nid_1:
+          id: nid_1
+          table: node_field_data
+          field: nid
+          relationship: reverse__node__field_iq_event_instances
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_unformatted
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
+        view_node:
+          id: view_node
+          table: node
+          field: view_node
+          relationship: reverse__node__field_iq_event_instances
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: Ansicht
+          output_url_as_text: true
+          absolute: false
+          entity_type: node
+          plugin_id: entity_link
+        field_media_image:
+          id: field_media_image
+          table: media__field_media_image
+          field: field_media_image
+          relationship: field_iq_image
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: image_url
+          settings:
+            image_style: ''
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -100,7 +364,7 @@ display:
             alter_text: false
             text: ''
             make_link: false
-            path: ''
+            path: '/node/{{ nid }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -138,7 +402,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -203,7 +467,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -370,6 +634,7 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+          group: 1
         title:
           id: title
           table: node_field_data
@@ -383,7 +648,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Title
+            label: 'Event Title'
             description: ''
             use_operator: false
             operator: title_op
@@ -556,6 +821,55 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
+        field_iq_topics_target_id:
+          id: field_iq_topics_target_id
+          table: node__field_iq_topics
+          field: field_iq_topics_target_id
+          relationship: reverse__node__field_iq_event_instances
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_iq_topics_target_id_op
+            label: Themen
+            description: ''
+            use_operator: false
+            operator: field_iq_topics_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_iq_topics_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              author: '0'
+              editor: '0'
+              designer: '0'
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: iq_topics
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       sorts:
         created:
           id: created
@@ -595,19 +909,34 @@ display:
           admin_label: Location
           required: false
           plugin_id: standard
+        field_iq_image:
+          id: field_iq_image
+          table: node__field_iq_image
+          field: field_iq_image
+          relationship: none
+          group_type: group
+          admin_label: 'field_iq_image: Medien'
+          required: false
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
       title: 'Control view'
       use_ajax: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.media.field_media_image'
         - 'config:field.storage.node.field_iq_address'
         - 'config:field.storage.node.field_iq_date'
   adaptable_block_1:
@@ -624,9 +953,11 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.media.field_media_image'
         - 'config:field.storage.node.field_iq_address'
         - 'config:field.storage.node.field_iq_date'
   adaptable_block_2:
@@ -712,9 +1043,11 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.media.field_media_image'
         - 'config:field.storage.node.field_iq_address'
         - 'config:field.storage.node.field_iq_date'
   block_1:
@@ -804,9 +1137,11 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.media.field_media_image'
         - 'config:field.storage.node.field_iq_address'
         - 'config:field.storage.node.field_iq_date'
   block_2:
@@ -823,9 +1158,11 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.media.field_media_image'
         - 'config:field.storage.node.field_iq_address'
         - 'config:field.storage.node.field_iq_date'
   block_3:
@@ -911,8 +1248,10 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.media.field_media_image'
         - 'config:field.storage.node.field_iq_address'
         - 'config:field.storage.node.field_iq_date'

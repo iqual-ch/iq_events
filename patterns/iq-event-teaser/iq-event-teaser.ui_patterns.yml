@@ -14,6 +14,12 @@ iq-event-teaser:
     sub_title:
       type: text
       label: "Subtitle"
+    href:
+      type: href
+      label: "Link"
+    image:
+      type: image
+      label: "Image"
   libraries:
     - iq-event-teaser:
         css:
