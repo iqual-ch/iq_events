@@ -20,6 +20,15 @@ iq-event-teaser:
     image:
       type: image
       label: "Image"
+    description:
+      type: text
+      label: "Description"
+    address:
+      type: address
+      label: "Address"
+    date:
+      type: date
+      label: "Date"
   libraries:
     - iq-event-teaser:
         css:
