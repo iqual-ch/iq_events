@@ -3,7 +3,16 @@
     <div class="inner">
       <div class="content-holder">
         <div class="img-holder">
-          <img src="{{image}}" title="{{title}}" alt="{{title}}" />
+          {% include '@iq_barrio/includes/responsive-image.html.twig' with {
+            'image' : image_img,
+            'template' : 'image_standard',
+            'sizes': {'1200px':'100vw','768px':'50vw','300px':'100vw'},
+              'attributes' : {
+                title: title,
+                alt: title,
+              }
+          } %}
+          {# <img src="{{image_img}}" title="{{title}}" alt="{{title}}" /> #}
         </div>
         <div class="event-info">
         <div class="date">{{date}}</div>
