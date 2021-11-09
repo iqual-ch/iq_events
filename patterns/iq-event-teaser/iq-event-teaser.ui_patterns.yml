@@ -17,9 +17,28 @@ iq-event-teaser:
     href:
       type: href
       label: "Link"
-    image:
+    image_img:
       type: image
-      label: "Image"
+      label: The image
+    image_template:
+      type: image_style_template
+      label: Template
+    sizes:
+      type: component_sizes
+      label: Size
+    description:
+      type: text
+      label: "Description"
+    address:
+      type: address
+      label: "Address"
+    date:
+      type: date
+      label: "Date"
+  responsive_images:
+    template_fields:
+      image_img: image_template
+    component_sizes_field: sizes
   libraries:
     - iq-event-teaser:
         css:

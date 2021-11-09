@@ -175,8 +175,5 @@ function iq_events_node_access(\Drupal\Core\Entity\EntityInterface $entity, $ope
     if (!empty($generalGroup) && $generalGroup->getMember($account)) {
       return AccessResult::neutral();
     }
-    else {
-      return AccessResult::forbidden('Non-group members cannot access');
-    }
   }
 }
