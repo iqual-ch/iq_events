@@ -3,8 +3,10 @@
 namespace Drupal\iq_events\Plugin\WebformHandler;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\webform\WebformSubmissionInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * IQ Events Webform submission handler.
@@ -35,6 +37,7 @@ class IqEventsWebformSubmissionHandler extends \Drupal\webform\Plugin\WebformHan
         // @TODO: See how many people are registered with the webform.
         $nr_persons = 1;
         $event_instance = Node::load($values['iq_event_instance']);
+        $event = Node::load($values['iq_event']);
         if (!empty($event_instance)) {
           if (!empty($values['iq_nr_persons'])) {
             $nr_persons += $values['iq_nr_persons'];
@@ -44,6 +47,9 @@ class IqEventsWebformSubmissionHandler extends \Drupal\webform\Plugin\WebformHan
 
           $event_instance->set('field_iq_number_registrations', $number_of_registrations + $nr_persons);
           $event_instance->save();
+          $url = Url::fromRoute('entity.node.canonical', ['node' => $event->id()]);
+          $response = new RedirectResponse($url->toString());
+          $response->send();
         }
       }
 
