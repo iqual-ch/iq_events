@@ -47,9 +47,11 @@ class IqEventsWebformSubmissionHandler extends \Drupal\webform\Plugin\WebformHan
 
           $event_instance->set('field_iq_number_registrations', $number_of_registrations + $nr_persons);
           $event_instance->save();
-          $url = Url::fromRoute('entity.node.canonical', ['node' => $event->id()]);
-          $response = new RedirectResponse($url->toString());
-          $response->send();
+          if (!empty($event)) {
+            $url = Url::fromRoute('entity.node.canonical', ['node' => $event->id()]);
+            $response = new RedirectResponse($url->toString());
+            $response->send();
+          }
         }
       }
 
