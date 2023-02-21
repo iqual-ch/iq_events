@@ -5,7 +5,6 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
-use Drupal\group\Entity\Group;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -158,22 +157,6 @@ function iq_events_webform_element_alter(array &$element, \Drupal\Core\Form\Form
     }
     else if ($element['#webform_key'] == "iq_event") {
         $element['#default_value'] = $node->id();
-    }
-  }
-}
-
-
-/**
- * Implements hook_ENTITY_TYPE_access().
- */
-function iq_events_node_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account)
-{
-  if ($entity->bundle() == 'iq_event') {
-    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-    $generalGroup = Group::load(\Drupal::config('iq_group.settings')->get('general_group_id'));
-
-    if (!empty($generalGroup) && $generalGroup->getMember($account)) {
-      return AccessResult::neutral();
     }
   }
 }
