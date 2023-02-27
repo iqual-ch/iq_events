@@ -19,7 +19,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  *     cardinality = \Drupal\webform\Plugin\WebformHandlerInterface::CARDINALITY_SINGLE,
  *     results = \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_PROCESSED,
  * )
- * @package Drupal\iq_group\Plugin\WebformHandler
  */
 class IqEventsWebformSubmissionHandler extends \Drupal\webform\Plugin\WebformHandlerBase {
 
