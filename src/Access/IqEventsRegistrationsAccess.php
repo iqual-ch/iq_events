@@ -12,6 +12,9 @@ use Drupal\Core\Session\AccountInterface;
  */
 class IqEventsRegistrationsAccess implements AccessInterface {
 
+  /**
+   *
+   */
   public function checkAccess(RouteMatchInterface $route_match, AccountInterface $account) {
     $node = \Drupal::routeMatch()->getParameter('node');
 
