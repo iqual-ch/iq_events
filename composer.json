@@ -12,7 +12,7 @@
         "drupal/office_hours": "^1.5",
         "drupal/address": "^1.9",
         "drupal/address_formatter": "^2.0",
-        "drupal/iq_entity_browsers": "^2.0",
+        "iqual/iq_entity_browsers": "^2.0",
         "iqual/pagedesigner_block_adaptable": "^2.0",
         "drupal/field_group": "^3.2",
         "drupal/calendar": "^1.0"
