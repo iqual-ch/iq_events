@@ -7,6 +7,7 @@ use Drupal\Core\Ajax\CloseModalDialogCommand;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 
@@ -14,6 +15,8 @@ use Drupal\node\Entity\Node;
  * Iq Event Series Form.
  */
 class IqEventsSeriesForm extends FormBase {
+
+  use StringTranslationTrait;
 
   /**
    * The Event.
@@ -63,7 +66,7 @@ class IqEventsSeriesForm extends FormBase {
       $form['event_instance'] = [
         '#type' => 'select',
         '#options' => $event_instance_options,
-        '#title' => t('Event instance'),
+        '#title' => $this->t('Event instance'),
         '#default_value' => $default_value_instance,
       ];
       // Load a form for the event instance.
@@ -75,7 +78,7 @@ class IqEventsSeriesForm extends FormBase {
 
       $form['new_event_instance'] = [
         '#type' => 'details',
-        '#title' => t('New Event Instance'),
+        '#title' => $this->t('New Event Instance'),
         '#states' => [
           'visible' => ['select[name="event_instance"]' => ['value' => 'new']],
         ],
@@ -91,32 +94,32 @@ class IqEventsSeriesForm extends FormBase {
       // $form['new_event_instance']['form'] = \Drupal::service('entity.form_builder')->getForm($node, 'default');
       $form['repeat_week'] = [
         '#type' => 'number',
-        '#title' => t('Repeat every X-th week'),
+        '#title' => $this->t('Repeat every X-th week'),
       ];
       $form['days'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Days'),
         '#options' => [
-          '0' => t('Sunday'),
-          '1' => t('Monday'),
-          '2' => t('Tuesday'),
-          '3' => t('Wednesday'),
-          '4' => t('Thursday'),
-          '5' => t('Friday'),
-          '6' => t('Saturday'),
+          '0' => $this->t('Sunday'),
+          '1' => $this->t('Monday'),
+          '2' => $this->t('Tuesday'),
+          '3' => $this->t('Wednesday'),
+          '4' => $this->t('Thursday'),
+          '5' => $this->t('Friday'),
+          '6' => $this->t('Saturday'),
         ],
       ];
       $form['from'] = [
         '#type' => 'date',
-        '#title' => t('From'),
+        '#title' => $this->t('From'),
         '#time' => FALSE,
       ];
       $form['end_date_or_repetitions'] = [
         '#type' => 'select',
-        '#title' => t('Ends at'),
+        '#title' => $this->t('Ends at'),
         '#options' => [
-          'end_date' => t('End date'),
-          'repetitions' => t('Repetitions'),
+          'end_date' => $this->t('End date'),
+          'repetitions' => $this->t('Repetitions'),
         ],
         '#attributes' => [
           'class' => ['container-inline'],
@@ -124,7 +127,7 @@ class IqEventsSeriesForm extends FormBase {
       ];
       $form['end_date'] = [
         '#type' => 'date',
-        '#title' => t('To'),
+        '#title' => $this->t('To'),
         '#time' => FALSE,
         '#states' => [
           'visible' => [':input[name*="end_date_or_repetitions"]' => ['value' => 'end_date']],
@@ -135,7 +138,7 @@ class IqEventsSeriesForm extends FormBase {
       ];
       $form['repetitions'] = [
         '#type' => 'number',
-        '#title' => t('Repetitions'),
+        '#title' => $this->t('Repetitions'),
         '#time' => FALSE,
         '#states' => [
           'visible' => [':input[name*="end_date_or_repetitions"]' => ['value' => 'repetitions']],
