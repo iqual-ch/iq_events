@@ -5,11 +5,13 @@ namespace Drupal\iq_events\Form;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\CloseModalDialogCommand;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
-use Drupal\node\Entity\Node;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Iq Event Series Form.
@@ -26,10 +28,41 @@ class IqEventsSeriesForm extends FormBase {
   protected $event;
 
   /**
-   * Constructs the IqEventsSeriesForm form object.
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  public function __construct() {
+  protected $entityTypeManager;
+
+  /**
+   * The logger factory.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $loggerFactory;
+
+  /**
+   * Constructs the IqEventsSeriesForm form object.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
+   *   The logger factory.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerChannelFactoryInterface $logger_factory) {
     $this->event = $this->getRouteMatch()->getParameter('node');
+    $this->entityTypeManager = $entity_type_manager;
+    $this->loggerFactory = $logger_factory;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity_type.manager'),
+      $container->get('logger.factory')
+    );
   }
 
   /**
@@ -51,7 +84,9 @@ class IqEventsSeriesForm extends FormBase {
       $event_instance_options['new'] = 'Create new';
       $default_value_instance = 'new';
       foreach ($event_instances as $event_instance_id) {
-        $event_instance = Node::load($event_instance_id['target_id']);
+        $event_instance = $this->entityTypeManager
+          ->getStorage('node')
+          ->load($event_instance_id['target_id']);
         if (!empty($event_instance)) {
           $event_instance_options[$event_instance->id()] = $event_instance->label();
           $default_value_instance = $event_instance->id();
@@ -72,7 +107,7 @@ class IqEventsSeriesForm extends FormBase {
       // Load a form for the event instance.
       $values = ['type' => 'iq_event_instance'];
 
-      $node = \Drupal::entityTypeManager()
+      $node = $this->entityTypeManager
         ->getStorage('node')
         ->create($values);
 
@@ -182,13 +217,15 @@ class IqEventsSeriesForm extends FormBase {
     $response = new AjaxResponse();
     $instance_id = $form_state->getValue('event_instance');
     if ($instance_id != 'new') {
-      $event_instance = Node::load($instance_id);
+      $event_instance = $this->entityTypeManager
+        ->getStorage('node')
+        ->load($instance_id);
     }
     else {
       /** @var \Drupal\node\Entity\Node $event_instance */
       $event_instance = $form['new_event_instance']['inline_entity_form']['#entity'];
       $event_instance->save();
-      \Drupal::logger('iq_events')->notice($event_instance->getTitle());
+      $this->loggerFactory->get('iq_events')->notice($event_instance->getTitle());
     }
     $all_instances = $this->event->get('field_iq_event_instances')->getValue();
     if (!empty($event_instance)) {
