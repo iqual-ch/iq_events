@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * The Events module .module file.
  */
 
 use Drupal\Core\Entity\EntityInterface;
@@ -34,7 +35,7 @@ function iq_events_entity_view(array &$build, EntityInterface $entity, EntityVie
 }
 
 /**
- *
+ * Implements hook_ENTITY_TYPE_delete().
  */
 function iq_events_webform_submission_delete(WebformSubmissionInterface $webform_submission) {
   $values = $webform_submission->getData();
@@ -123,7 +124,7 @@ function iq_events_form_views_exposed_form_alter(&$form, FormStateInterface $for
 
       $options = [];
       $options['All'] = $form['webform_submission_value']['#options']['All'];
-      foreach ($event_instances as $key => $event_instance_id) {
+      foreach ($event_instances as $event_instance_id) {
         $event_instance = Node::load($event_instance_id['target_id']);
         if (!empty($event_instance)) {
           $options[$event_instance->id()] = $event_instance->label();
