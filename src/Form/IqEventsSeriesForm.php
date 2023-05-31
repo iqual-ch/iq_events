@@ -11,7 +11,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 
 /**
- *
+ * Iq Event Series Form.
  */
 class IqEventsSeriesForm extends FormBase {
 
@@ -23,14 +23,14 @@ class IqEventsSeriesForm extends FormBase {
   protected $event;
 
   /**
-   *
+   * Constructs the IqEventsSeriesForm form object.
    */
   public function __construct() {
     $this->event = $this->getRouteMatch()->getParameter('node');
   }
 
   /**
-   *
+   * Get Form Id.
    */
   public function getFormId() {
     // @todo Implement getFormId() method.
@@ -38,7 +38,7 @@ class IqEventsSeriesForm extends FormBase {
   }
 
   /**
-   *
+   * Build form.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     if (!empty($this->event) && $this->event->hasField('field_iq_event_instances')) {
@@ -47,7 +47,7 @@ class IqEventsSeriesForm extends FormBase {
       $event_instance_options = [];
       $event_instance_options['new'] = 'Create new';
       $default_value_instance = 'new';
-      foreach ($event_instances as $key => $event_instance_id) {
+      foreach ($event_instances as $event_instance_id) {
         $event_instance = Node::load($event_instance_id['target_id']);
         if (!empty($event_instance)) {
           $event_instance_options[$event_instance->id()] = $event_instance->label();
@@ -57,8 +57,8 @@ class IqEventsSeriesForm extends FormBase {
 
       // Condition for the field (only if the new is selected)
       // '#states' => [
-      //        'visible' => [':input[name*="uniqid_enabled"]' => ['checked' => TRUE]],
-      //      ],
+      // 'visible' => [':input[name*="uniqid_enabled"]' => ['checked' => TRUE]],
+      // ],
       // search for the form api.
       $form['event_instance'] = [
         '#type' => 'select',
@@ -154,26 +154,28 @@ class IqEventsSeriesForm extends FormBase {
   }
 
   /**
-   *
+   * Validate Form.
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
   }
 
   /**
-   *
+   * Submit Form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // @todo Implement submitForm() method.
   }
 
   /**
-   *
+   * Ajax Submit Form.
    */
   public function ajaxSubmitForm(array &$form, FormStateInterface $form_state) {
 
-    // Clone the instance for repetitions times or on every day until the end date.
-    // or if new instance - create the instance that many times or until end date with the data from the form embedded previously.
+    // Clone the instance for repetitions times or on every day until the end
+    // date.
+    // or if new instance - create the instance that many times or until end
+    // date with the data from the form embedded previously.
     $response = new AjaxResponse();
     $instance_id = $form_state->getValue('event_instance');
     if ($instance_id != 'new') {

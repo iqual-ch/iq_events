@@ -20,7 +20,7 @@ use Drupal\webform\WebformSubmissionInterface;
 class IqEventsEmailWebformHandler extends EmailWebformHandler {
 
   /**
-   *
+   * Send Message.
    */
   public function sendMessage(WebformSubmissionInterface $webform_submission, array $message) {
 

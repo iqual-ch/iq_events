@@ -29,7 +29,6 @@ class IqEventsWebformSubmissionHandler extends WebformHandlerBase {
   public function submitForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
 
     $values = $webform_submission->getData();
-    $user = NULL;
     /*foreach ($values as $key => $element) {
 
     }*/
