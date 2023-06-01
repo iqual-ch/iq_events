@@ -2,18 +2,9 @@
 
 namespace Drupal\iq_events\Controller;
 
-use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Entity\EntityRepositoryInterface;
-use Drupal\Core\Link;
-use Drupal\Core\Render\RendererInterface;
-use Drupal\Core\Url;
-use Drupal\node\NodeStorageInterface;
-use Drupal\node\NodeTypeInterface;
 use Drupal\node\NodeInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Controller for the event series.
@@ -31,8 +22,8 @@ class IqEventsSeriesController extends ControllerBase implements ContainerInject
    */
   public function registrationsOverview(NodeInterface $node) {
 
+    $build = NULL;
     return $build;
   }
-
 
 }

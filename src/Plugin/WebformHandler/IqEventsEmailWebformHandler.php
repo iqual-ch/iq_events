@@ -1,4 +1,5 @@
 <?php
+
 namespace Drupal\iq_events\Plugin\WebformHandler;
 
 use Drupal\webform\Plugin\WebformHandler\EmailWebformHandler;
@@ -18,13 +19,15 @@ use Drupal\webform\WebformSubmissionInterface;
  */
 class IqEventsEmailWebformHandler extends EmailWebformHandler {
 
+  /**
+   * Send Message.
+   */
   public function sendMessage(WebformSubmissionInterface $webform_submission, array $message) {
 
     $values = $webform_submission->getData();
     if (!empty($values['to_mail']) && \Drupal::service('email.validator')->isValid($values['to_mail'])) {
       $message['to_mail'] = $values['to_mail'];
     }
-
 
     parent::sendMessage($webform_submission, $message);
   }
