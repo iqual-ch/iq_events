@@ -169,6 +169,7 @@ class IqEventsSeriesForm extends FormBase {
         ],
         '#attributes' => [
           'class' => ['container-inline'],
+          'type' => 'date',
         ],
       ];
       $form['repetitions'] = [
