@@ -18,20 +18,21 @@ use Drupal\node\Entity\Node;
  */
 function iq_events_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
   if ($entity->getEntityTypeId() == 'node' && $entity->bundle() == 'iq_event') {
-    foreach ($build['field_iq_event_instances']['#items'] as $key => $instance) {
-      $instance = Node::load($instance->getValue()['target_id']);
-      if (!empty($instance) && $instance->hasField('field_iq_capacity') && $instance->hasField('field_iq_number_registrations')) {
+    if (!empty($build['field_iq_event_instances']) && !empty($build['field_iq_event_instances']['#items'])) {
+      foreach ($build['field_iq_event_instances']['#items'] as $key => $instance) {
+        $instance = Node::load($instance->getValue()['target_id']);
+        if (!empty($instance) && $instance->hasField('field_iq_capacity') && $instance->hasField('field_iq_number_registrations')) {
 
-        if ($instance->field_iq_capacity->value == $instance->field_iq_number_registrations->value) {
-          $build['field_iq_event_instances'][$key] = [
-            '#type' => 'markup',
-            '#markup' => '<p>The Registration is closed for ' . $instance->label() . ' (the event is full).</p>',
-          ];
+          if ($instance->field_iq_capacity->value == $instance->field_iq_number_registrations->value) {
+            $build['field_iq_event_instances'][$key] = [
+              '#type' => 'markup',
+              '#markup' => '<p>The Registration is closed for ' . $instance->label() . ' (the event is full).</p>',
+            ];
+          }
         }
       }
     }
   }
-
 }
 
 /**
@@ -63,18 +64,7 @@ function iq_events_webform_submission_delete(WebformSubmissionInterface $webform
  * Implements hook_form_alter().
  */
 function iq_events_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'node_iq_event_edit_form') {
-    /*    $reference_form['actions']['ief_reference_save'] = [
-    '#type' => 'submit',
-    '#value' => t('Add @type_singular', ['@type_singular' => $labels['singular']]),
-    '#name' => 'ief-reference-submit-' . $reference_form['#ief_id'],
-    '#limit_validation_errors' => [$reference_form['#parents']],
-    '#attributes' => ['class' => ['ief-entity-submit']],
-    '#ajax' => [
-    'callback' => 'inline_entity_form_get_element',
-    'wrapper' => 'inline-entity-form-' . $reference_form['#ief_id'],
-    ],
-    ];*/
+  if ($form_id == 'node_iq_event_edit_form' && !empty($form['field_iq_event_instances'])) {
     $node = \Drupal::routeMatch()->getParameter('node');
     $form['field_iq_event_instances']['widget']['create_series'] =
       [
