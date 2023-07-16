@@ -5,13 +5,13 @@
  * The Events module .module file.
  */
 
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use Drupal\webform\WebformSubmissionInterface;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
+use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * Implements hook_entity_view().
@@ -135,8 +135,8 @@ function iq_events_webform_element_alter(array &$element, FormStateInterface $fo
     if ($element['#webform_key'] == "iq_event_instance") {
       if (!empty($form['#attributes']['class'])) {
         foreach ($form['#attributes']['class'] as $class) {
-          if (preg_match('/^.*node\-[0-9]+\-form$/', $class)) {
-            $event_instance_id = explode('-', explode('-node-', $class)[1])[0];
+          if (preg_match('/^.*node\-[0-9]+\-form$/', (string) $class)) {
+            $event_instance_id = explode('-', explode('-node-', (string) $class)[1])[0];
             $event_instances = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
               'type' => 'iq_event_instance',
               'nid' => $event_instance_id,
