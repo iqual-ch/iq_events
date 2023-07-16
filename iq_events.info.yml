@@ -2,7 +2,7 @@ name: IQ Events module
 description: Provides functionality for creating and managing events.
 package: Custom
 type: module
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^9.5 || ^10
 dependencies:
   - drupal:office_hours
   - drupal:datetime_range

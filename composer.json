@@ -1,21 +1,23 @@
 {
-    "name": "iqual/iq_events",
-    "description": "Provides functionality creating and managing events",
-    "type": "drupal-custom-module",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://github.com/iqual-ch/iq_events"
-        }
-    ],
-    "require": {
-        "drupal/office_hours": "^1.5",
-        "drupal/address": "^1.9",
-        "drupal/address_formatter": "^2.0",
-        "drupal/entity": "^1.2",
-        "iqual/iq_entity_browsers": "^2.0",
-        "drupal/pagedesigner_block_adaptable": "^2.0",
-        "drupal/field_group": "^3.2",
-        "drupal/calendar": "^1.0"
+  "name": "iqual/iq_events",
+  "description": "Provides functionality creating and managing events",
+  "type": "drupal-custom-module",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://github.com/iqual-ch/iq_events"
     }
+  ],
+  "require": {
+    "drupal/office_hours": "^1.5",
+    "drupal/address": "^1.9",
+    "drupal/address_formatter": "^2.0",
+    "drupal/entity": "^1.2",
+    "iqual/iq_entity_browsers": "^2.0",
+    "drupal/pagedesigner_block_adaptable": "^2.0",
+    "drupal/field_group": "^3.2",
+    "drupal/calendar": "^1.0",
+    "php": "^8.1",
+    "drupal/core": "^9.5 || ^10"
+  }
 }
