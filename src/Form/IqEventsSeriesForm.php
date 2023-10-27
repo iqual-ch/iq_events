@@ -244,9 +244,9 @@ class IqEventsSeriesForm extends FormBase {
       $interval = $start_date->diff($end_date);
       $start_time = explode(':', $start_date->format('H:i:s'));
       $new_start_date = $form_state->getValue('from');
-      $year = explode('-', $new_start_date)[0];
-      $month = explode('-', $new_start_date)[1];
-      $day = explode('-', $new_start_date)[2];
+      $year = explode('-', (string) $new_start_date)[0];
+      $month = explode('-', (string) $new_start_date)[1];
+      $day = explode('-', (string) $new_start_date)[2];
       $start_date = $start_date->setDate($year, $month, $day);
       // If the day is selected, add an instance for that day.
       $repeat_per_week = $form_state->getValue('repeat_week');
