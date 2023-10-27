@@ -10,7 +10,7 @@ Install module as usual:
 
 ## Installation on Drupal 10:
 
-Dependency "drupal/vefl" does not have a Drupal 10 release. You need to use the `mglaman/composer-drupal-lenient` on your project to allow installation:
+Dependency "drupal/address_formatter" does not have a Drupal 10 release. You need to use the `mglaman/composer-drupal-lenient` on your project to allow installation:
 
     composer config minimum-stability dev
     composer require mglaman/composer-drupal-lenient
