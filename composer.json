@@ -19,5 +19,12 @@
     "drupal/pagedesigner_block_adaptable": "^3.0",
     "drupal/field_group": "^3.4",
     "drupal/calendar": "^1.0"
+  },
+  "extra": {
+    "patches": {
+      "drupal/address_formatter": {
+        "[https://dgo.to/3296528]: Automated Drupal 10 compatibility fixes": "https://git.drupalcode.org/project/address_formatter/-/merge_requests/1/diffs.diff?diff_id=656289"
+      },
+    }
   }
 }
