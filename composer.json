@@ -24,7 +24,7 @@
     "patches": {
       "drupal/address_formatter": {
         "[https://dgo.to/3296528]: Automated Drupal 10 compatibility fixes": "https://git.drupalcode.org/project/address_formatter/-/merge_requests/1/diffs.diff?diff_id=656289"
-      },
+      }
     }
   }
 }
