@@ -16,7 +16,7 @@
     "drupal/address_formatter": "^2.1",
     "drupal/entity": "^1.6",
     "iqual/iq_entity_browsers": "dev-issue/DUP-173_d11_upgrade",
-    "drupal/pagedesigner_block_adaptable": "^4.0",
+    "drupal/pagedesigner_block_adaptable": "4.x-dev@dev as 4.0.0",
     "drupal/field_group": "^4.0",
     "drupal/calendar": "^1.0"
   }
